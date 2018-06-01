@@ -27,3 +27,13 @@ def altas_actividad():
     else:
         response.flash = 'POR FAVOR COMPLETE EL FORMULARIO'    
     return dict(form=form)
+
+def altas_pagos():
+    form = SQLFORM(db.pago,submit_button='Aceptar')
+    if form.accepts(request.vars, session):
+        response.flash = 'NUEVo PAGO INGRESADO'
+    elif form.errors:
+        response.flash = 'HAY ERRORES EN EL INGRESO'
+    else:
+        response.flash = 'POR FAVOR COMPLETE EL FORMULARIO'    
+    return dict(form=form)
