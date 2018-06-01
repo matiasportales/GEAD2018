@@ -12,7 +12,16 @@ def altas_socios():
     form = SQLFORM(db.socios,submit_button='Aceptar')
     if form.accepts(request.vars, session):
         response.flash = 'NUEVO SOCIO INGRESADO'
-#        redirect(URL('dar_permiso'))
+    elif form.errors:
+        response.flash = 'HAY ERRORES EN EL INGRESO'
+    else:
+        response.flash = 'POR FAVOR COMPLETE EL FORMULARIO'    
+    return dict(form=form)
+
+def altas_actividad():
+    form = SQLFORM(db.actividad,submit_button='Aceptar')
+    if form.accepts(request.vars, session):
+        response.flash = 'NUEVA ACTIVIDAD INGRESADA'
     elif form.errors:
         response.flash = 'HAY ERRORES EN EL INGRESO'
     else:
