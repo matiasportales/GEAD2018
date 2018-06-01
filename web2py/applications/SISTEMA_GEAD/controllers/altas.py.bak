@@ -31,7 +31,7 @@ def altas_actividad():
 def altas_pagos():
     form = SQLFORM(db.pago,submit_button='Aceptar')
     if form.accepts(request.vars, session):
-        response.flash = 'NUEVo PAGO INGRESADO'
+        response.flash = 'NUEVO PAGO INGRESADO'
     elif form.errors:
         response.flash = 'HAY ERRORES EN EL INGRESO'
     else:
