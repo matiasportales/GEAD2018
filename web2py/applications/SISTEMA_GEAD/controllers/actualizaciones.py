@@ -21,7 +21,7 @@ def modificar_socios():
                                 submit_button='Grabar')
     response.flash="ADVERTENCIA:Los datos modificados se guardaran en la base de datos"
     if form.accepts(request.vars, session):
-        response.flash = 'Los datos fueron modifiados'
+        response.flash = 'Los datos fueron modificados'
         redirect(URL(r=request,f='listar_socios'))
     return dict(form=form)
 
