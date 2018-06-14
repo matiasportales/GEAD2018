@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.IndexError'> list index out of range"
+p3
+sS'layer'
+p4
+S'/home/matias/GEAD2018/web2py/applications/SISTEMA_GEAD/controllers/actualizaciones.py'
+p5
+sS'code'
+p6
+S'# coding: utf8\n# intente algo como\ndef index(): return dict(message="hello from actualizaciones.py")\n\ndef listar_socios():\n    if(request.get_vars.buscar):\n        soc = db((db.socios.dni_socio.like(\'%\'+request.get_vars.buscar+\'%\'))).select()\n    try:\n        soc\n    except:\n        soc = db().select(db.socios.ALL)\n    return dict(soc=soc)\n\ndef modificar_socios():\n    soc = db(db.socios.id_socio==request.args(0)).select()\n    socio = soc[0]\n    form = SQLFORM(db.socios,socio,deletable=False,\n           Field=[\'id_socio\',\'nombre_socio\',\'dni_socio\',\'foto\',\'apellido_socio\',\'direccion\',\'localidad\',\'cp\',\'fecha_nacimiento\',\'telefono_movil\',\'telefono_fijo\',\'mail\'],\n           labels = {\'id_socio\':\'NRO DE SOCIO\',\'nombre_socio\':\'NOMBRE\',\'foto\':\'FOTO\',\'dni_socio\':\'DNI\',\'apellido_socio\':\'APELLIDO\',\'direccion\':\'DOMICILIO\',\'localidad\':\'LOCALIDAD\',\n                                \'cp\':\'CODIGO POSTAL\',\'contacto\':\'CONTACTO\',\'telefono_movil\':\'TELEFONO MOVIL\',\'telefono_fijo\':\'TELEFONO FIJO\',\'mail\':\'MAIL\'},\n                                submit_button=\'Grabar\')\n    response.flash="ADVERTENCIA:Los datos modificados se guardaran en la base de datos"\n    if form.accepts(request.vars, session):\n        response.flash = \'Los datos fueron modifiados\'\n        redirect(URL(r=request,f=\'listar_socios\'))\n    return dict(form=form)\n\nresponse._vars=response._caller(modificar_socios)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/usr/lib/python2.7/dist-packages/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/matias/GEAD2018/web2py/applications/SISTEMA_GEAD/controllers/actualizaciones.py", line 28, in <module>\n  File "/usr/lib/python2.7/dist-packages/gluon/globals.py", line 412, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/matias/GEAD2018/web2py/applications/SISTEMA_GEAD/controllers/actualizaciones.py", line 16, in modificar_socios\n    socio = soc[0]\n  File "/usr/lib/python2.7/dist-packages/gluon/packages/dal/pydal/objects.py", line 2507, in __getitem__\n    row = self.records[i]\nIndexError: list index out of range\n'
+p11
+s.
