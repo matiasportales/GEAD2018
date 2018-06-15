@@ -49,3 +49,52 @@ def borrar_socios():
     else:
         response.flash="ADVERTENCIA: todos los datos de este socio seran eliminados de la base de datos.Para eliminar haga click en la casilla de confirmacion y luego presione el boton eliminar"    
     return dict(form=form)
+
+##########################################################################################
+
+
+def listar_actividad():
+    if(request.get_vars.buscar):
+        act = db((db.actividad.nombre_actividad.like('%'+request.get_vars.buscar+'%'))).select()
+    try:
+        act
+    except:
+        act = db().select(db.actividad.ALL)
+    return dict( act=act)
+
+def modificar_actividad():
+    act = db(db.actividad.id_actividad==request.args(0)).select()
+    actividad = act[0]
+    form = SQLFORM(db.actividad,actividad,deletable=False,
+           Field=['id_actividad','nombre_actividad','foto','descripcion'],
+           labels = {'id_actividad':'NRO DE ACTIVIDAD','nombre_actividad':'NOMBRE ACTIVIDAD','foto':'FOTO','descripcion':'DESCRIPCION'},
+                                submit_button='Grabar')
+    response.flash="ADVERTENCIA:Los datos modificados se guardaran en la base de datos"
+    if form.accepts(request.vars, session):
+        response.flash = 'Los datos fueron modifiados'
+        redirect(URL(r=request,f='listar_actividad'))
+    return dict(form=form)
+
+def actividad():
+    if(request.get_vars.buscar):
+        act = db((db.actividad.nombre_actividad.like('%'+request.get_vars.buscar+'%'))).select()
+    try:
+        act
+    except:
+        act = db().select(db.actividad.ALL)
+    return dict( act=act)
+
+def borrar_actividad():
+    act = db(db.actividad.id_actividad==request.args(0)).select()
+    actividad = act[0]
+    form = SQLFORM(db.actividad,actividad,deletable=True ,
+           Field=['id_actividad','nombre_actividad','foto','descripcion'],
+           labels = {'id_actividad':'NRO DE ACTIVIDAD','nombre_actividad':'NOMBRE ACTIVIDAD','foto':'FOTO','descripcion':'DESCRIPCION'},
+                                submit_button='Eliminar')
+    response.flash="ADVERTENCIA:Los datos eliminados desapareceran de la base de datos"
+    if form.accepts(request.vars, session):
+        response.flash = 'Los datos fueron modificados'
+        redirect(URL(r=request,f='listar_actividad'))
+    else:
+        response.flash="ADVERTENCIA: todos los datos de esta actividad seran eliminados de la base de datos.Para eliminar haga click en la casilla de confirmacion y luego presione el boton eliminar"    
+    return dict(form=form)
