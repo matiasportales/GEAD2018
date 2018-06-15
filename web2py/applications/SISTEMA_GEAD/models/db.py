@@ -117,9 +117,9 @@ db.define_table('actividad',
     Field ('nombre_actividad','string'),
     #Field ('horarioydia_actividad','datetime',label=T("Hora y dia actividad")),
     Field ('descripcion','text',label=T('Descripcion')),
-    #Field ('precio_cuota','double'),
+    Field ('precio_cuota','double', readable = True, writable = False),
     auth.signature,
-    format='%(nombre_actividad)s')
+    format='%(nombre_actividad)s'+'-'+'%(id_actividad)s')
 
 
 db.actividad.nombre_actividad.requires= IS_NOT_EMPTY(error_message='No se ingreso nombre de la actividad.') 
@@ -143,7 +143,7 @@ db.define_table('socios',
     Field ('telefono_movil','integer',length=12),
     Field ('genero','string',requires = IS_IN_SET(['Masculino','Femenino'])),
     Field ('mail','string',unique = True,requires = IS_EMAIL()),
-    format='%(dni_socio)s')
+    format ='%(id_socio)s'+'-'+'%(dni_socio)s'+'-'+'%(nombre_socio)s'+'-'+'%(apellido_socio)s')
 
 db.socios.foto.requires= IS_NOT_EMPTY(error_message='No se subio ninguna foto.')
 db.socios.nombre_socio.requires= IS_NOT_EMPTY(error_message='No se ingreso ningun nombre.')
@@ -151,7 +151,31 @@ db.socios.apellido_socio.requires= IS_NOT_EMPTY(error_message='No se ingreso nin
 #db.socios.fecha_nacimiento.requires= IS_NOT_EMPTY(error_message='No se ingreso ninguna fecha.')
 db.socios.dni_socio.requires= IS_NOT_IN_DB(db,'socios.dni_socio')
 db.socios.direccion.requires= IS_NOT_EMPTY(error_message='No se ingreso ninguna dirección.')
-db.socios.localidad.requires= IS_NOT_EMPTY(error_message='No se ingreso ninguna localidad.')
+#db.socios.localidad.requires= IS_NOT_EMPTY(error_message='No se ingreso ninguna localidad.')
+db.socios.localidad.requires=IS_IN_SET(['20 de Junio',
+                                         'Aldo Bonzi',
+                                         'Cañuelas',
+                                         'Castelar',
+                                         'Ciudad Evita',
+                                         'El Palomar',
+                                         'Ezeiza',
+                                         'Gregorio de Laferrere',
+                                         'González Catán',
+                                         'Haedo',
+                                         'Isidro Casanova',
+                                         'La Tablada',
+                                         'Libertad',
+                                         'Lomas del Mirador',
+                                         'Merlo','Morón',
+                                         'Pontevedra',
+                                         'San Justo',
+                                         'Ramos Mejía',
+                                         'Rafael Castillo',
+                                         'Tapiales',
+                                         'Villa Eduardo Madero',
+                                         'Villa Luzuriaga',
+                                         'Virrey del Pino',
+                                         'otro'])
 db.socios.cp.requires= IS_NOT_EMPTY(error_message='No se ingreso ningun codigo postal.')
 db.socios.telefono_fijo.requires= IS_NOT_EMPTY(error_message='No se ingreso ningun telefono fijo.')
 db.socios.telefono_movil.requires= IS_NOT_EMPTY(error_message='No se ingreso ningun telefono móvil.')
@@ -162,11 +186,12 @@ db.socios.mail.requires= IS_NOT_EMPTY(error_message='No se ingreso ningun mail.'
 
 
 db.define_table('pago',
-    Field ('id_socio',db.socios ,label=T('Socios')),
+    Field ('socio',db.socios, label=T('Socios')), 
+           #requires = IS_IN_DB(db, db.socios.id," %(dni_socio)s "), label=T('Socios')),
     Field ('id_pago', 'id'),
     Field ('fecha_pago','date'),
-    Field ('mes_abonado','string',requires = IS_IN_SET(['Enero','febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']))
-               ),
+    Field ('mes_abonado','string',requires = IS_IN_SET(['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'])),
+    format ='%(id_pago)s')
 
 #db.pago.mes_pago.requires=IS_IN_SET('Enero','febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre')
 
