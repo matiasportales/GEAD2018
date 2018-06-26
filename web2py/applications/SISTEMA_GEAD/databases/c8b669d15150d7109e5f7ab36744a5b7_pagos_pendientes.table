@@ -13,7 +13,7 @@ p6
 I2
 sS'sql'
 p7
-S'INTEGER REFERENCES pago (id_pago) ON DELETE CASCADE  '
+S'INTEGER REFERENCES pago (id_pago) ON DELETE CASCADE'
 p8
 sS'notnull'
 p9
@@ -37,10 +37,11 @@ p14
 sg9
 I00
 sg10
-g12
-ssS'id_socio'
+S'id'
 p15
-(dp16
+ssS'id_socio'
+p16
+(dp17
 g4
 I512
 sg5
@@ -48,11 +49,11 @@ I00
 sg6
 I3
 sg7
-S'INTEGER REFERENCES socios (id_socio) ON DELETE CASCADE  '
-p17
+S'INTEGER REFERENCES socios (id_socio) ON DELETE CASCADE'
+p18
 sg9
 I00
 sg10
 S'reference socios'
-p18
+p19
 ss.
