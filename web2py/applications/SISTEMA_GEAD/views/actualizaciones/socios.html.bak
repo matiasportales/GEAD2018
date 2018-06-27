@@ -1,0 +1,50 @@
+<h4><center style="background:#99f">ACTUALIZACIONES DE SOCIOS</center></h4>
+<table>
+    
+
+<tr>
+<td>
+<right><td>{{=A(IMG(_width="150px",_src=URL(r=request,c='static',f='editar.jpg'),_title='administrativo'))}}</td></right>
+</tr>
+<center><form method)="post"><input type="text" name="buscar"><input type="submit" value="Buscar"></form>
+</td>
+</center>
+   
+</table>
+<table style="border: 5px solid #99f" width="100%">
+<tr style="border: 5px solid #99f" width="100%">
+    <th style="border: 1px solid #99f"><center>FECHA</center></th>
+    <th style="border: 1px solid #99f"><center>NRO SOCIO</center></th>
+    <th style="border: 1px solid #99f"><center>FOTO</center></th>
+    <th style="border: 1px solid #99f"><center>DNI</center></th>
+    <th style="border: 1px solid #99f"><center>NOMBRE</center></th>
+    <th style="border: 1px solid #99f"><center>APELLIDO</center></th>
+    <th style="border: 1px solid #99f"><center>DOMICILIO</center></th>
+    <th style="border: 1px solid #99f"><center>FECHA DE NACIMIENTO</center></th>
+    <th style="border: 1px solid #99f"><center>LOCALIDAD</center></th>
+    <th style="border: 1px solid #99f"><center>CODIGO POSTAL</center></th>
+    <th style="border: 1px solid #99f"><center>TELEFONO MOVIL</center></th>
+    <th style="border: 1px solid #99f"><center>TELEFONO FIJO</center></th>
+    <th style="border: 1px solid #99f"><center>ADMIN</center></th>
+</tr>
+    {{ for j in soc:}}
+<tr>
+	<td style="border: 1px solid #99f"><center>{{=j.fecha}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=j.id_socio}}</center></td>
+    <td style="border: 1px solid #99f"><center>{{=IMG(_width="300px",_height="250px",_src=URL(c='default',f='download', args=j.foto))}}</center></td>
+    <td style="border: 1px solid #99f"><center>{{=j.dni_socio}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=j.nombre_socio}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=j.apellido_socio}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=j.direccion}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=j.fecha_nacimiento}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=j.localidad}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=j.cp}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=j.telefono_movil}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=j.telefono_fijo}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=A('Modificar', _href=URL(r=request, f='modificar_socios', args=j.id))}} -
+        {{=A('Borrar', _href=URL(r=request, f='borrar_socios', args=[j.id]))}}
+<hr></center></td>
+</tr>
+{{pass}} 
+</table>
+<tr><A href={{=URL(f="socios")}}><input type='submit' value='Volver a listar'/></A>

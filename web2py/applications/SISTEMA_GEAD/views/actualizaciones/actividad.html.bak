@@ -1,0 +1,37 @@
+{{extend 'layout.html'}}
+<h4><center style="background:#99f">ACTUALIZACIONES DE ACTIVIDADES</center></h4>
+<table>
+    
+
+<tr>
+<td>
+<right><td>{{=A(IMG(_width="150px",_src=URL(r=request,c='static',f='polideportivo.jpg'),_title='DEPORTES'))}}</td></right>
+</tr>
+<center><form method)="post"><input type="text" name="buscar"><input type="submit" value="Buscar"></form>
+</td>
+</center>
+   
+</table>
+<table style="border: 5px solid #99f" width="100%">
+<tr style="border: 5px solid #99f" width="100%">
+    <th style="border: 1px solid #99f"><center>FECHA</center></th>
+    <th style="border: 1px solid #99f"><center>NRO DE ACTIVIDAD</center></th>
+    <th style="border: 1px solid #99f"><center>FOTO</center></th>
+    <th style="border: 1px solid #99f"><center>NOMBRE ACTIVIDAD </center></th>
+    <th style="border: 1px solid #99f"><center>DESCRIPCION</center></th>
+    <th style="border: 1px solid #99f"><center>ADMIN</center></th>
+</tr>
+    {{ for j in act:}}
+<tr>
+	<td style="border: 1px solid #99f"><center>{{=j.fecha}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=j.id_actividad}}</center></td>
+    <td style="border: 1px solid #99f"><center>{{=IMG(_width="300px",_height="250px",_src=URL(c='default',f='download', args=j.foto))}}</center></td>
+    <td style="border: 1px solid #99f"><center>{{=j.nombre_actividad}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=j.descripcion}}</center></td>
+	<td style="border: 1px solid #99f"><center>{{=A('Modificar', _href=URL(r=request, f='modificar_actividad', args=j.id))}} -
+        {{=A('Borrar', _href=URL(r=request, f='borrar_actividad', args=[j.id]))}}
+<hr></center></td>
+</tr>
+{{pass}} 
+</table>
+<tr><A href={{=URL(f="act")}}><input type='submit' value='Volver a listar'/></A>

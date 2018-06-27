@@ -1,0 +1,29 @@
+{{extend 'layout.html'}}
+
+<h3><center style="background:#99f">LISTADO DE ACTIVIDADES</center></h3>
+<center>{{=A(IMG(_width="200px",_height="300px",_src=URL(r=request,c='static',f='polideportivo.jpg'),_title='polideportivo'))}}
+<form method)="post"><input type="text" name="buscar"><input type="submit" value="Buscar"></form></center>
+<table style="border: 5px solid #99f" width="100%">  
+<tr style="border: 5px solid #99f" width="100%">
+
+    <th style="border: 1px solid #99f"><center>NRO DE ACTIVIDAD</center></th>
+    <th style="border: 1px solid #99f"><center>FOTO</center></th>
+    <th style="border: 1px solid #99f"><center>NOMBRE DE ACTIVIDAD</center></th>
+    <th style="border: 1px solid #99f"><center>DESCRIPCION</center></th>
+</tr>
+    {{ for j in act:}}
+<tr>
+
+    <td style="border: 1px solid #99f"><center>{{=j.id_actividad}}</center></td>
+    <td style="border: 1px solid #99f"><center>{{=IMG(_width="400px",_height="350px" ,_src=URL(c='default',f='download', args=j.foto))}}</center></td>
+    <td style="border: 1px solid #99f"><center>{{=j.nombre_actividad}}</center></td>
+    <td style="border: 1px solid #99f"><center>{{=j.descripcion}}</center></td>
+    
+</tr>
+{{pass}}
+</table>
+<TR style="border: 5px solid #99f" width="100%">
+    <tfoot><td style="border: 1px solid #99f"><center>TOTAL</center></td></tfoot></TR>            
+ 
+<tr><A href={{=URL(f="listar_actividad")}}><input type='submit' value='volver a listar'/></A>
+</body>
