@@ -22,49 +22,9 @@ sS'type'
 p10
 S'id'
 p11
-ssS'id_socio'
+ssS'fecha_pago'
 p12
 (dp13
-S'sortable'
-p14
-I1
-sS'sql'
-p15
-S'INTEGER REFERENCES socios (id_socio) ON DELETE CASCADE  '
-p16
-sS'length'
-p17
-I512
-sS'notnull'
-p18
-I00
-sS'unique'
-p19
-I00
-sS'type'
-p20
-S'reference socios'
-p21
-ssS'socio'
-p22
-(dp23
-g4
-I512
-sg5
-I00
-sg6
-I1
-sg7
-S'INTEGER REFERENCES socios (id_socio) ON DELETE CASCADE'
-p24
-sg9
-I00
-sg10
-S'reference socios'
-p25
-ssS'fecha_pago'
-p26
-(dp27
 g4
 I512
 sg5
@@ -73,11 +33,51 @@ sg6
 I3
 sg7
 S'DATE'
-p28
+p14
 sg9
 I00
 sg10
 S'date'
+p15
+ssS'socio'
+p16
+(dp17
+g4
+I512
+sg5
+I00
+sg6
+I1
+sg7
+S'INTEGER REFERENCES socios (id_socio) ON DELETE CASCADE'
+p18
+sg9
+I00
+sg10
+S'reference socios'
+p19
+ssS'id_socio'
+p20
+(dp21
+S'sortable'
+p22
+I1
+sS'sql'
+p23
+S'INTEGER REFERENCES socios (id_socio) ON DELETE CASCADE  '
+p24
+sS'length'
+p25
+I512
+sS'notnull'
+p26
+I00
+sS'unique'
+p27
+I00
+sS'type'
+p28
+S'reference socios'
 p29
 ssS'mes_abonado'
 p30
